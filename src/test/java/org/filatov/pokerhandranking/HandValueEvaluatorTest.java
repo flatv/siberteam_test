@@ -10,7 +10,7 @@ import org.junit.jupiter.params.provider.ArgumentsSource;
 
 import java.util.stream.Stream;
 
-import static org.filatov.pokerhandranking.HandValueEvaluator.evaluate;
+import static org.filatov.pokerhandranking.util.HandValueEvaluator.evaluate;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class HandValueEvaluatorTest {
