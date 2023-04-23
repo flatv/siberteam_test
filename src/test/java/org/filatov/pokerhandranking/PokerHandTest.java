@@ -25,7 +25,7 @@ class PokerHandTest {
 
         Collections.shuffle(pokerHands);
 
-        Collections.sort(pokerHands, Comparator.reverseOrder());
+        pokerHands.sort(Comparator.reverseOrder());
 
         assertEquals(Collections.max(pokerHands), pokerHands.get(0));
         assertEquals(Collections.min(pokerHands), pokerHands.get(pokerHands.size() - 1));
