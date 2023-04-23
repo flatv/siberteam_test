@@ -13,12 +13,21 @@ public class HandValueEvaluator {
 
     public static HandValue evaluate(PokerHand hand) {
         long count = getCount(hand);
+
+        /*
+        Оставляем только карты с уникальной рубашкой, таким образом
+        если останется одна карта то у нас флеш
+         */
         long flush = getFlush(hand);
 
         Integer[] cardsCount = getCardsCount(hand);
 
         Rank[] ranks = getRanks(hand);
 
+        /*
+        Также оставляем карты с уникальным номиналом
+        если осталось 4 карты у нас пара
+         */
         if (count == 4) {
             return HandValue.PAIR;
         }
@@ -28,6 +37,12 @@ public class HandValueEvaluator {
         if (count == 2) {
             return cardsCount[0] == 3 ? HandValue.FULL_HOUSE : HandValue.FOUR_OF_A_KIND;
         }
+        /*
+        Проверяем что карты идут по порядку разностью позиций в enum,
+        если разница равна 4, то у нас стрит.
+        Также сравниваем старшую карту с тузом, что бы избежать того,
+        что флеш рояль считается за стрит флеш
+         */
         if (isStraight(ranks)) {
             return flush == 1 ? HandValue.STRAIGHT_FLUSH : HandValue.STRAIGHT;
         }
