@@ -32,6 +32,22 @@ class PokerHandTest {
     }
 
     @Test
+    void test() {
+        PokerHand pair = new PokerHand("2C 2D 4H 5D AD");
+        PokerHand pair1 = new PokerHand("5C 5D 2H 3D 6D");
+
+        PokerHand samePair = new PokerHand("2C 2D 4H 5D AD");
+        PokerHand samePair1 = new PokerHand("2S 2H 5H 7D AS");
+
+        PokerHand set = new PokerHand("KC KD KH AD TD");
+        PokerHand set1 = new PokerHand("AC AS AH JD QD");
+
+        assertTrue(pair1.compareTo(pair) > 0);
+        assertTrue(samePair.compareTo(samePair1) < 0);
+        assertTrue(set.compareTo(set1) < 0);
+    }
+
+    @Test
     void assertThrowsTest() {
         assertThrows(IllegalArgumentException.class, () -> new PokerHand("AA BB CC"));
         assertThrows(RuntimeException.class, () -> new PokerHand("KS KS KS KS KS"));
